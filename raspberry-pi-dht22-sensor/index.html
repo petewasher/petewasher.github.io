@@ -8,10 +8,10 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <link rel="preload" as="style" href="/assets/built/screen.css?v=b280df48d0" />
-    <link rel="preload" as="script" href="/assets/built/casper.js?v=b280df48d0" />
+    <link rel="preload" as="style" href="/assets/built/screen.css?v=e19d2981ee" />
+    <link rel="preload" as="script" href="/assets/built/casper.js?v=e19d2981ee" />
 
-    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=b280df48d0" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=e19d2981ee" />
 
     <meta name="description" content="It&#x27;s amazing how expensive it can appear to be to buy a digital temperature sensor. You can put one together yourself for very little using things you might already have.">
     <link rel="canonical" href="https://petewasher.github.io/raspberry-pi-dht22-sensor/">
@@ -155,9 +155,9 @@
     <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.5/umd/sodo-search.min.js" data-key="42328744598d9c97332f956378" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.5/umd/main.css" data-sodo-search="https://petewasher.github.io/" data-locale="en" crossorigin="anonymous"></script>
     
     <link href="https://petewasher.github.io/webmentions/receive/" rel="webmention">
-    <script defer src="/public/cards.min.js?v=b280df48d0"></script>
-    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=b280df48d0">
-    <script defer src="/public/member-attribution.min.js?v=b280df48d0"></script><style>:root {--ghost-accent-color: #FF1A75;}</style>
+    <script defer src="/public/cards.min.js?v=e19d2981ee"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=e19d2981ee">
+    <script defer src="/public/member-attribution.min.js?v=e19d2981ee"></script><style>:root {--ghost-accent-color: #FF1A75;}</style>
 
 </head>
 <body class="post-template tag-guides tag-raspberry-pi tag-iot tag-sensors tag-infuxdb tag-smarthome is-head-left-logo has-cover">
@@ -250,7 +250,7 @@
     </header>
 
     <section class="gh-content gh-canvas">
-        <h2 id="setup">Setup</h2><p>Assemble some bits:</p><ul><li>Pi Zero W or really any flavour of Pi you have around.</li><li>SD Card</li><li>DHT22 Sensor and some cables. I bought <a href="https://www.amazon.co.uk/MakerHawk-Digital-Temperature-Humidity-Measure/dp/B072391SJV?ref=petewasher.github.io">this one</a>.</li><li>Or a DHT11 sensor like <a href="https://www.amazon.co.uk/Longruner-Temperature-Humidity-Arduino-Raspberry/dp/B073PW6WGD?ref=petewasher.github.io">this one</a>. DHT11 has slightly less resolution and accuracy, but is cheaper. Wiring is the same.</li></ul><p>I suggest you get one which comes prepackaged on a small PCB with the headers. Generally these come with the appropriate resistor already soldered on, and some wires to hook up and get you started quicker. </p><p>Grab the latest Raspbian from the RPi Foundation, or use a noobs image to<br>get your Pi Zero installed. Remember to add a empty file called <code>ssh</code> to<br>your <code>/boot</code> partition to enable SSH Server, and fill in a <code>wpa_supplicant.conf</code><br>if you need to setup your wifi:</p><pre><code>country=GB
+        <h2 id="setup">Setup</h2><p>Assemble some bits:</p><ul><li>Pi Zero W or really any flavour of Pi you have around.</li><li>SD Card</li><li>DHT22 Sensor and some cables. I bought <a href="https://www.amazon.co.uk/MakerHawk-Digital-Temperature-Humidity-Measure/dp/B072391SJV?ref=petewasher.net">this one</a>.</li><li>Or a DHT11 sensor like <a href="https://www.amazon.co.uk/Longruner-Temperature-Humidity-Arduino-Raspberry/dp/B073PW6WGD?ref=petewasher.net">this one</a>. DHT11 has slightly less resolution and accuracy, but is cheaper. Wiring is the same.</li></ul><p>I suggest you get one which comes prepackaged on a small PCB with the headers. Generally these come with the appropriate resistor already soldered on, and some wires to hook up and get you started quicker. </p><p>Grab the latest Raspbian from the RPi Foundation, or use a noobs image to<br>get your Pi Zero installed. Remember to add a empty file called <code>ssh</code> to<br>your <code>/boot</code> partition to enable SSH Server, and fill in a <code>wpa_supplicant.conf</code><br>if you need to setup your wifi:</p><pre><code>country=GB
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 
@@ -259,7 +259,7 @@ ssid="WIFI_SSID"
 scan_ssid=1
 psk="WIFI_PASSWORD"
 key_mgmt=WPA-PSK
-}</code></pre><p>More details <a href="https://linuxhint.com/rasperberry_pi_wifi_wpa_supplicant/?ref=petewasher.github.io">here</a>.</p><p>Now your pi should arrive on the network and you will be able to SSH into it<br>using <code>ssh pi@raspberrypi</code>. Do the updates etc., and we can get the DHT sensor<br>setup!</p><h2 id="cheap-dht22-wifi-sensor">Cheap DHT22 Wifi Sensor</h2><p>If you have the same sensor listed above, wire up your Pi as follows:</p><!--kg-card-begin: markdown--><pre><code>DHT22 Pin 1 -&gt; 3.3V
+}</code></pre><p>More details <a href="https://linuxhint.com/rasperberry_pi_wifi_wpa_supplicant/?ref=petewasher.net">here</a>.</p><p>Now your pi should arrive on the network and you will be able to SSH into it<br>using <code>ssh pi@raspberrypi</code>. Do the updates etc., and we can get the DHT sensor<br>setup!</p><h2 id="cheap-dht22-wifi-sensor">Cheap DHT22 Wifi Sensor</h2><p>If you have the same sensor listed above, wire up your Pi as follows:</p><!--kg-card-begin: markdown--><pre><code>DHT22 Pin 1 -&gt; 3.3V
 DHT22 Pin 2 -&gt; GPIO4
 DHT22 Pin 3 -&gt; GND
 </code></pre>
@@ -455,7 +455,7 @@ pkg</div>
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous">
 </script>
-<script src="/assets/built/casper.js?v=b280df48d0"></script>
+<script src="/assets/built/casper.js?v=e19d2981ee"></script>
 <script>
 $(document).ready(function () {
     // Mobile Menu Trigger

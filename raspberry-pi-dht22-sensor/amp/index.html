@@ -1088,7 +1088,7 @@
             </figure>
             <section class="post-content">
 
-                <h2 id="setup">Setup</h2><p>Assemble some bits:</p><ul><li>Pi Zero W or really any flavour of Pi you have around.</li><li>SD Card</li><li>DHT22 Sensor and some cables. I bought <a href="https://www.amazon.co.uk/MakerHawk-Digital-Temperature-Humidity-Measure/dp/B072391SJV?ref=petewasher.github.io">this one</a>.</li><li>Or a DHT11 sensor like <a href="https://www.amazon.co.uk/Longruner-Temperature-Humidity-Arduino-Raspberry/dp/B073PW6WGD?ref=petewasher.github.io">this one</a>. DHT11 has slightly less resolution and accuracy, but is cheaper. Wiring is the same.</li></ul><p>I suggest you get one which comes prepackaged on a small PCB with the headers. Generally these come with the appropriate resistor already soldered on, and some wires to hook up and get you started quicker. </p><p>Grab the latest Raspbian from the RPi Foundation, or use a noobs image to<br />get your Pi Zero installed. Remember to add a empty file called <code>ssh</code> to<br />your <code>/boot</code> partition to enable SSH Server, and fill in a <code>wpa_supplicant.conf</code><br />if you need to setup your wifi:</p><pre><code>country=GB
+                <h2 id="setup">Setup</h2><p>Assemble some bits:</p><ul><li>Pi Zero W or really any flavour of Pi you have around.</li><li>SD Card</li><li>DHT22 Sensor and some cables. I bought <a href="https://www.amazon.co.uk/MakerHawk-Digital-Temperature-Humidity-Measure/dp/B072391SJV?ref=petewasher.net">this one</a>.</li><li>Or a DHT11 sensor like <a href="https://www.amazon.co.uk/Longruner-Temperature-Humidity-Arduino-Raspberry/dp/B073PW6WGD?ref=petewasher.net">this one</a>. DHT11 has slightly less resolution and accuracy, but is cheaper. Wiring is the same.</li></ul><p>I suggest you get one which comes prepackaged on a small PCB with the headers. Generally these come with the appropriate resistor already soldered on, and some wires to hook up and get you started quicker. </p><p>Grab the latest Raspbian from the RPi Foundation, or use a noobs image to<br />get your Pi Zero installed. Remember to add a empty file called <code>ssh</code> to<br />your <code>/boot</code> partition to enable SSH Server, and fill in a <code>wpa_supplicant.conf</code><br />if you need to setup your wifi:</p><pre><code>country=GB
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 
@@ -1097,7 +1097,7 @@ ssid="WIFI_SSID"
 scan_ssid=1
 psk="WIFI_PASSWORD"
 key_mgmt=WPA-PSK
-}</code></pre><p>More details <a href="https://linuxhint.com/rasperberry_pi_wifi_wpa_supplicant/?ref=petewasher.github.io">here</a>.</p><p>Now your pi should arrive on the network and you will be able to SSH into it<br />using <code>ssh pi@raspberrypi</code>. Do the updates etc., and we can get the DHT sensor<br />setup!</p><h2 id="cheap-dht22-wifi-sensor">Cheap DHT22 Wifi Sensor</h2><p>If you have the same sensor listed above, wire up your Pi as follows:</p><pre><code>DHT22 Pin 1 -&gt; 3.3V
+}</code></pre><p>More details <a href="https://linuxhint.com/rasperberry_pi_wifi_wpa_supplicant/?ref=petewasher.net">here</a>.</p><p>Now your pi should arrive on the network and you will be able to SSH into it<br />using <code>ssh pi@raspberrypi</code>. Do the updates etc., and we can get the DHT sensor<br />setup!</p><h2 id="cheap-dht22-wifi-sensor">Cheap DHT22 Wifi Sensor</h2><p>If you have the same sensor listed above, wire up your Pi as follows:</p><pre><code>DHT22 Pin 1 -&gt; 3.3V
 DHT22 Pin 2 -&gt; GPIO4
 DHT22 Pin 3 -&gt; GND
 </code></pre>

@@ -1085,14 +1085,14 @@
             </figure>
             <section class="post-content">
 
-                <p><a href="https://m.do.co/c/d33cde93687a?ref=petewasher.github.io">Digital Ocean</a> is a great place for hosting your websites. You can do a lot of hosting for not much outlay, as long as you're careful!</p><h2 id="prep">Prep</h2>
+                <p><a href="https://m.do.co/c/d33cde93687a?ref=petewasher.net">Digital Ocean</a> is a great place for hosting your websites. You can do a lot of hosting for not much outlay, as long as you're careful!</p><h2 id="prep">Prep</h2>
 <p>There are no doubt infinitely more complicated and secure actions you might take to secure your services, so do your own research too! <em>I am not a web security expert!</em></p>
-<p>Set yourself up with a DNS name (try <a href="https://www.123-reg.co.uk/?ref=petewasher.github.io">123-Reg</a> for example), and <a href="https://www.digitalocean.com/community/tutorials/how-to-point-to-digitalocean-nameservers-from-common-domain-registrars?ref=petewasher.github.io">setup your nameserver</a> to point at DigitalOcean. Then you can create your DNS configuration <a href="https://www.digitalocean.com/docs/networking/dns/?ref=petewasher.github.io">within DO</a>.</p>
+<p>Set yourself up with a DNS name (try <a href="https://www.123-reg.co.uk/?ref=petewasher.net">123-Reg</a> for example), and <a href="https://www.digitalocean.com/community/tutorials/how-to-point-to-digitalocean-nameservers-from-common-domain-registrars?ref=petewasher.net">setup your nameserver</a> to point at DigitalOcean. Then you can create your DNS configuration <a href="https://www.digitalocean.com/docs/networking/dns/?ref=petewasher.net">within DO</a>.</p>
 <h2 id="startingadroplet">Starting a Droplet</h2>
 <p>Machines in Digital Ocean are referred to as Droplets. We need to start a Droplet to start playing with the hosting. I suggest you start with an Ubuntu server droplet in the cheapest size for testing - you can always upgrade later, but if you start larger and it gets too expensive, it's more difficult to downgrade. As you add more services you may be forced to expand.</p>
 <h2 id="stoppingoutsideaccess">Stopping outside access</h2>
 <p>It's sensible to also setup a Firewall to protect your system whilst you work on it. You should only open the ports which you explicitly need. For a webserver, this is probably ports <code>80</code> and <code>433</code> only. Personally I keep a <code>development</code> firewall which acts on the corresponding tag. This opens port 22 to my home IP address, allowing me access. I remove this tag once I'm done developing.</p>
-<p>You should also setup UFW within your server if you're using Ubuntu as I started with. To do that I followed this guide for using <a href="https://www.tecmint.com/setup-ufw-firewall-on-ubuntu-and-debian/?ref=petewasher.github.io">UFW to secure webservers</a>. Again, I allow port <code>80</code> and <code>443</code>, and SSH to my home IP</p>
+<p>You should also setup UFW within your server if you're using Ubuntu as I started with. To do that I followed this guide for using <a href="https://www.tecmint.com/setup-ufw-firewall-on-ubuntu-and-debian/?ref=petewasher.net">UFW to secure webservers</a>. Again, I allow port <code>80</code> and <code>443</code>, and SSH to my home IP</p>
 <h3 id="otherthingstodo">Other things to do</h3>
 <ol>
 <li>Setup a SSH using an SSH Key pair so you can control access. Basics:</li>
