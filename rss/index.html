@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[Smart Stuff]]></title><description><![CDATA[Lots of stuff I've done which seems pretty smart]]></description><link>https://www.petewasher.net/</link><image><url>https://www.petewasher.net/favicon.png</url><title>Smart Stuff</title><link>https://www.petewasher.net/</link></image><generator>Ghost 5.101</generator><lastBuildDate>Tue, 10 Dec 2024 20:13:06 GMT</lastBuildDate><atom:link href="https://www.petewasher.net/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Paperless on TrueNAS]]></title><description><![CDATA[<p>The Paperless Project is a way of reducing the amount of paper cluttering up your office. This post of my notes on getting it installed in a TrueNAS jail.</p><ol><li>Create the jail</li><li>Assign storage by mounting a pool</li><li>Log into the jail and start installing things...</li></ol><!--kg-card-begin: markdown--><pre><code>pkg update
+pkg upgrade</code></pre>]]></description><link>https://www.petewasher.net/paperless-on-truenas/</link><guid isPermaLink="false">600d9863c3e380000177cc99</guid><dc:creator><![CDATA[Pete Washer]]></dc:creator><pubDate>Sun, 24 Jan 2021 16:01:16 GMT</pubDate><content:encoded><![CDATA[<p>The Paperless Project is a way of reducing the amount of paper cluttering up your office. This post of my notes on getting it installed in a TrueNAS jail.</p><ol><li>Create the jail</li><li>Assign storage by mounting a pool</li><li>Log into the jail and start installing things...</li></ol><!--kg-card-begin: markdown--><pre><code>pkg update
+pkg upgrade
+
+pkg install git
+pkg install python3
+
+ln -s /usr/local/bin/python3.7 /usr/local/bin/python
+
+pkg install tesseract
+pkg install ImageMagick7-7.0.10.24_2
+pkg install unpaper
+pg install poppler
+pkg install optipng
+pkg install py37-pip
+pkg install postgresql96-server
+pkg install py37-sqlite3
+</code></pre>
+<!--kg-card-end: markdown--><p>And now you can start installing Paperless itself, following the <a href="https://paperless.readthedocs.io/en/latest/setup.html?ref=petewasher.net#setup">instructions</a>...</p><!--kg-card-begin: markdown--><pre><code>mkdir /opt
+cd /opt
+git clone https://github.com/the-paperless-project/paperless.git
+cd paperless
+pip install -r requirements.txt
+</code></pre>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Raspberry Pi DHT22 & DHT11 Sensor]]></title><description><![CDATA[It's amazing how expensive it can appear to be to buy a digital temperature sensor. You can put one together yourself for very little using things you might already have.]]></description><link>https://www.petewasher.net/raspberry-pi-dht22-sensor/</link><guid isPermaLink="false">5ea9754ce5c5d400017520a1</guid><category><![CDATA[guides]]></category><category><![CDATA[raspberry-pi]]></category><category><![CDATA[iot]]></category><category><![CDATA[sensors]]></category><category><![CDATA[infuxdb]]></category><category><![CDATA[smarthome]]></category><dc:creator><![CDATA[Pete Washer]]></dc:creator><pubDate>Thu, 14 May 2020 21:02:03 GMT</pubDate><media:content url="https://images.unsplash.com/photo-1585146702843-45507b83e662?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=2000&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjExNzczfQ" medium="image"/><content:encoded><![CDATA[<h2 id="setup">Setup</h2><img src="https://images.unsplash.com/photo-1585146702843-45507b83e662?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=2000&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjExNzczfQ" alt="Raspberry Pi DHT22 &amp; DHT11 Sensor"><p>Assemble some bits:</p><ul><li>Pi Zero W or really any flavour of Pi you have around.</li><li>SD Card</li><li>DHT22 Sensor and some cables. I bought <a href="https://www.amazon.co.uk/MakerHawk-Digital-Temperature-Humidity-Measure/dp/B072391SJV?ref=petewasher.net">this one</a>.</li><li>Or a DHT11 sensor like <a href="https://www.amazon.co.uk/Longruner-Temperature-Humidity-Arduino-Raspberry/dp/B073PW6WGD?ref=petewasher.net">this one</a>. DHT11 has slightly less resolution and accuracy, but is cheaper. Wiring is the same.</li></ul><p>I suggest you get one which comes prepackaged on a small PCB with the headers. Generally these come with the appropriate resistor already soldered on, and some wires to hook up and get you started quicker. </p><p>Grab the latest Raspbian from the RPi Foundation, or use a noobs image to<br>get your Pi Zero installed. Remember to add a empty file called <code>ssh</code> to<br>your <code>/boot</code> partition to enable SSH Server, and fill in a <code>wpa_supplicant.conf</code><br>if you need to setup your wifi:</p><pre><code>country=GB
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+ssid=&quot;WIFI_SSID&quot;
+scan_ssid=1
+psk=&quot;WIFI_PASSWORD&quot;
+key_mgmt=WPA-PSK
+}</code></pre><p>More details <a href="https://linuxhint.com/rasperberry_pi_wifi_wpa_supplicant/?ref=petewasher.net">here</a>.</p><p>Now your pi should arrive on the network and you will be able to SSH into it<br>using <code>ssh pi@raspberrypi</code>. Do the updates etc., and we can get the DHT sensor<br>setup!</p><h2 id="cheap-dht22-wifi-sensor">Cheap DHT22 Wifi Sensor</h2><p>If you have the same sensor listed above, wire up your Pi as follows:</p><!--kg-card-begin: markdown--><pre><code>DHT22 Pin 1 -&gt; 3.3V
+DHT22 Pin 2 -&gt; GPIO4
+DHT22 Pin 3 -&gt; GND
+</code></pre>
+<!--kg-card-end: markdown--><p>This will give your sensor some power, and allow us to communicate with it.<br>Next you&apos;ll need to get the appropriate libraries installed. Since we&apos;re<br>doing all this in Python, you can run the following commands to get going:</p><pre><code class="language-bash"># Get the python tools we need
+sudo apt install python3-dev python3-pip
+
+# Ensure we have the latest modules
+sudo python3 -m pip install --upgrade pip setuptools wheel
+
+# Install the Adafruit module for talking to DHT sensors, and influxdb to talk to our Influx server:
+sudo pip3 install Adafruit_DHT influxdb</code></pre><p>Checkout the code from my github page. Here&apos;s the key bits:</p><!--kg-card-begin: markdown--><pre><code># Create the device using GPIO 4
+dhtDevice = adafruit_dht.DHT11(board.D4)
+
+# Take a reading:
+t = dhtDevice.temperature
+h = dhtDevice.humidity
+</code></pre>
+<!--kg-card-end: markdown--><p>If you followed my other guide on how to setup your own InfluxDB server, you<br>can start pushing information into your database. Here&apos;s the important bits of the script to accomplish this, which you can adapt as you need:</p><!--kg-card-begin: markdown--><pre><code>from influxdb import InfluxDBClient
+# Prep some JSON we will send to influxdb:
+json_body = [
+        {
+            &quot;measurement&quot;: &quot;temperature&quot;,
+            &quot;tags&quot;: {
+                &quot;device&quot;: &quot;kitchen&quot;,
+                &quot;type&quot;: &quot;dht11&quot;
+                },
+            &quot;fields&quot;: {
+               &quot;deg_c&quot;: float(t),
+               &quot;humidity_percent&quot;: float(h)
+            },
+            &quot;time&quot;: datetime.utcnow().strftime(&apos;%Y-%m-%dT%H:%M:%SZ&apos;)
+            }
+        ]
+
+# Connect to the influxdb, setting all these settings as appropriate. 
+client = InfluxDBClient(&apos;influxserver.lan&apos;, 8086, &apos;influx_username&apos;, &apos;influx_password&apos;, &apos;influx_database_name_here&apos;)
+client.write_points(json_body)
+</code></pre>
+<!--kg-card-end: markdown--><p>I have this script scheduled on a Cron job to run every few minutes, logging temperature in my kitchen. </p><p>Hope this helps you get started!</p>]]></content:encoded></item><item><title><![CDATA[Digital Ocean Hosting for Mixed Web Services]]></title><description><![CDATA[Digital Ocean is a great place for hosting your websites. You can do a lot of hosting for not much outlay, as long as you're careful!]]></description><link>https://www.petewasher.net/digital-ocean-hosting/</link><guid isPermaLink="false">5ea976bde5c5d400017520c7</guid><category><![CDATA[guides]]></category><category><![CDATA[dev-ops]]></category><category><![CDATA[docker]]></category><dc:creator><![CDATA[Pete Washer]]></dc:creator><pubDate>Wed, 29 Apr 2020 12:56:55 GMT</pubDate><media:content url="https://www.petewasher.net/content/images/2020/05/header-1.png" medium="image"/><content:encoded><![CDATA[<img src="https://www.petewasher.net/content/images/2020/05/header-1.png" alt="Digital Ocean Hosting for Mixed Web Services"><p><a href="https://m.do.co/c/d33cde93687a?ref=petewasher.net">Digital Ocean</a> is a great place for hosting your websites. You can do a lot of hosting for not much outlay, as long as you&apos;re careful!</p><!--kg-card-begin: markdown--><h2 id="prep">Prep</h2>
+<p>There are no doubt infinitely more complicated and secure actions you might take to secure your services, so do your own research too! <em>I am not a web security expert!</em></p>
+<p>Set yourself up with a DNS name (try <a href="https://www.123-reg.co.uk/?ref=petewasher.net">123-Reg</a> for example), and <a href="https://www.digitalocean.com/community/tutorials/how-to-point-to-digitalocean-nameservers-from-common-domain-registrars?ref=petewasher.net">setup your nameserver</a> to point at DigitalOcean. Then you can create your DNS configuration <a href="https://www.digitalocean.com/docs/networking/dns/?ref=petewasher.net">within DO</a>.</p>
+<h2 id="startingadroplet">Starting a Droplet</h2>
+<p>Machines in Digital Ocean are referred to as Droplets. We need to start a Droplet to start playing with the hosting. I suggest you start with an Ubuntu server droplet in the cheapest size for testing - you can always upgrade later, but if you start larger and it gets too expensive, it&apos;s more difficult to downgrade. As you add more services you may be forced to expand.</p>
+<h2 id="stoppingoutsideaccess">Stopping outside access</h2>
+<p>It&apos;s sensible to also setup a Firewall to protect your system whilst you work on it. You should only open the ports which you explicitly need. For a webserver, this is probably ports <code>80</code> and <code>433</code> only. Personally I keep a <code>development</code> firewall which acts on the corresponding tag. This opens port 22 to my home IP address, allowing me access. I remove this tag once I&apos;m done developing.</p>
+<p>You should also setup UFW within your server if you&apos;re using Ubuntu as I started with. To do that I followed this guide for using <a href="https://www.tecmint.com/setup-ufw-firewall-on-ubuntu-and-debian/?ref=petewasher.net">UFW to secure webservers</a>. Again, I allow port <code>80</code> and <code>443</code>, and SSH to my home IP</p>
+<h3 id="otherthingstodo">Other things to do</h3>
+<ol>
+<li>Setup a SSH using an SSH Key pair so you can control access. Basics:</li>
+</ol>
+<pre><code>ssh-keygen -t rsa
+ssh-copy-id you@your-server.com
+</code></pre>
+<p>Once you have this working OK, you should consider turning off password access to SSH (allowing access using the key only), and not permitting Root access at any point.</p>
+<p>You can achieve this by editing your <code>/etc/ssh/sshd.conf</code> to add lines:</p>
+<pre><code>PermitRootLogin no
+PasswordAuthentication no
+</code></pre>
+<ol start="2">
+<li>
+<p>Setup monitoring which uses Digital Ocean alerts. This can email you when your droplet is using too much memory or CPU.</p>
+</li>
+<li>
+<p>Keep your server up to date! you&apos;ll need to keep track of security patches and check in often to see if your server needs rebooting to update.</p>
+</li>
+</ol>
+<h2 id="hosting">Hosting</h2>
+<p>This site is a Ghost install, running on Docker. The network looks like this:</p>
+<p><img src="https://www.petewasher.net/content/images/2020/05/network.svg" alt="Digital Ocean Hosting for Mixed Web Services" loading="lazy"></p>
+<p>I achieve this using three key components:</p>
+<ul>
+<li>Ghost instance</li>
+<li>MySQL database</li>
+<li>Traefik proxy</li>
+</ul>
+<p>Traefik also takes care of acquiring and maintaining a Let&apos;s Encrypt SSL certificate for the site. Easy! I followed the Traefik docs to suit my needs.</p>
+<pre><code>version: &quot;3.3&quot;
+services:
+
+  traefik:
+    image: &quot;traefik:v2.2&quot;
+    container_name: &quot;traefik&quot;
+    restart: &quot;always&quot;
+    ports:
+      - &quot;80:80&quot;
+      - &quot;443:443&quot;
+
+    command:
+
+      # General setup
+      - &quot;--global.sendAnonymousUsage&quot;
+      - &quot;--log.filePath=/var/log/traefik.log&quot;
+      - &quot;--accesslog=true&quot;
+      - &quot;--accesslog.filePath=/var/log/access.log&quot;
+      - &quot;--accesslog.bufferingsize=100&quot;
+
+      # Provide a dashboard - but this is protected by middleware  
+      - &quot;--api.dashboard=true&quot;
+
+      # Use the docker provider, but don&apos;t expose by default
+      - &quot;--providers.docker=true&quot;
+      - &quot;--providers.docker.exposedbydefault=false&quot;
+      - &quot;--providers.file.directory=/configuration&quot;
+      - &quot;--providers.file.filename=dynamic_conf.toml&quot;
+      - &quot;--providers.file.watch=true&quot;
+
+      # Create a http and https entrypoint
+      - &quot;--entrypoints.web.address=:80&quot;
+      - &quot;--entrypoints.websecure.address=:443&quot;
+
+      # We&apos;ll store the certs in a file acme.json which we mount below
+      - &quot;--certificatesresolvers.mytlschallenge.acme.tlschallenge=true&quot;
+      - &quot;--certificatesresolvers.mytlschallenge.acme.email=you@yourhost.net&quot;
+      - &quot;--certificatesresolvers.mytlschallenge.acme.storage=/letsencrypt/acme.json&quot;
+
+    # Containers to be shared need to be on this network 
+    # so Traefik can route to them. This allows you to segregate 
+    # your databases etc onto a network Traefik cannot see. 
+    networks:
+      - web
+
+    volumes:
+      - logs:/var/log
+      - &quot;./letsencrypt:/letsencrypt&quot;
+      - &quot;./configuration:/configuration&quot;
+      # Mounting the docker socket allows us to pick up on containers
+      # being created, and automatically start serving them. 
+      - &quot;/var/run/docker.sock:/var/run/docker.sock:ro&quot;
+volumes:
+  logs: {}
+
+networks:
+  web:
+     external: true
+</code></pre>
+<p>This then works with a <code>toml</code> file which configures more of our server. This needs to go in the <code>configuration</code> folder. You&apos;ll need to go through and setup the various parts of this file to suit your personal situation. Change the <code>Host</code> and <code>ipWhitelist</code> as you require. The <code>ipWhitelist</code> restricts access to the dashboard to your home IP.</p>
+<pre><code class="language-toml">[http]
+
+  [http.routers.my-api]
+    entryPoints = [&quot;websecure&quot;]
+    rule = &quot;Host(`yourserver.net`)&quot;
+    service = &quot;api@internal&quot;
+    middlewares = [&quot;secured&quot;]
+    [http.routers.my-api.tls]
+      options = &quot;default&quot;
+      certResolver = &quot;mytlschallenge&quot;
+
+  [http.middlewares]
+ 
+    [http.middlewares.secured.chain]
+      middlewares = [&quot;safe-ipwhitelist&quot;, &quot;auth&quot;]
+
+    [http.middlewares.secureHeader.headers]
+      frameDeny = true
+      sslRedirect = true
+      stsSeconds = 31536000
+      stsPreload = true
+      stsIncludeSubdomains = true
+  
+    [http.middlewares.auth.basicAuth]
+      users = [
+      &quot;user1:some-special-password&quot;
+      ]
+
+    [http.middlewares.safe-ipwhitelist.ipWhiteList]
+      sourceRange = [&quot;192.168.1.1&quot;]
+
+[tls]
+
+  [tls.options]
+    [tls.options.default]
+      minVersion = &quot;VersionTLS12&quot;
+      cipherSuites = [
+        &quot;TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384&quot;,
+        &quot;TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305&quot;,
+        &quot;TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305&quot;,
+        &quot;TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256&quot;,
+        &quot;TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256&quot;,
+      ]
+      sniStrict = true
+
+</code></pre>
+<p>And Ghost is done as follows:</p>
+<pre><code>version: &quot;3&quot;
+
+services:
+   ghost:
+     image: ghost:3.14-alpine
+     volumes:
+        - ./volumes/ghost:/var/lib/ghost/content
+     logging:
+        driver: &quot;json-file&quot;
+        options:
+            max-file: &quot;5&quot;
+            max-size: &quot;10m&quot;
+     networks:
+        - web 
+        - ghost_back 
+     restart: always
+     labels:
+        - &quot;traefik.enable=true&quot;
+        - &quot;traefik.docker.network=web&quot;
+        - &quot;traefik.http.middlewares.yourwebsite-https.redirectscheme.scheme=https&quot;
+
+        # Handle HTTP traffic by redirecting to the HTTPS endpoint
+        - &quot;traefik.http.routers.yourwebsite-http.entrypoints=web&quot;
+        - &quot;traefik.http.routers.yourwebsite-http.rule=Host(`yourwebsite.net`, `www.yourwebsite.net`)&quot;
+        - &quot;traefik.http.routers.yourwebsite-http.middlewares=yourwebsite-https@docker&quot;
+        
+        # Switch these lines to restrict access to the whitelist, or use in production
+        - &quot;traefik.http.routers.yourwebsite.middlewares=secureHeader@file&quot;
+        #- &quot;traefik.http.routers.yourwebsite.middlewares=safe-ipwhitelist@file&quot;
+        
+        # This router handles https traffic:
+        - &quot;traefik.http.routers.yourwebsite.entrypoints=websecure&quot;
+        - &quot;traefik.http.routers.yourwebsite.rule=Host(`yourwebsite.net`, `www.yourwebsite.net`)&quot;
+        - &quot;traefik.http.routers.yourwebsite.tls=true&quot;
+        - &quot;traefik.http.routers.yourwebsite.tls.options=default&quot;
+        - &quot;traefik.http.routers.yourwebsite.tls.certresolver=mytlschallenge&quot;
+     environment:
+       database__client: mysql
+       database__connection__host: ghost_mysql
+       database__connection__user: ghost
+       database__connection__password: ghostdbpass
+       database__connection__database: ghostdb_yourwebsite_net
+       url: https://www.yourwebsite.net
+     container_name: ghost_yourwebsite_net 
+networks:
+  # The ghost backbone handles the connection to the 
+  # database
+  ghost_back:
+     external: true
+  
+  # The web service allows Traefik to see us 
+  web:
+     external: true
+
+</code></pre>
+<p>Then it&apos;s just a case of bringing everything up using <code>docker-compose up</code>!</p>
+<!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>
