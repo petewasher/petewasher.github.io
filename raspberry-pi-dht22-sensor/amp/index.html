@@ -7,14 +7,14 @@
     <title>Raspberry Pi DHT22 &amp; DHT11 Sensor</title>
 
     <meta name="description" content="It&#x27;s amazing how expensive it can appear to be to buy a digital temperature sensor. You can put one together yourself for very little using things you might already have.">
-    <link rel="canonical" href="https://www.petewasher.net/raspberry-pi-dht22-sensor/">
+    <link rel="canonical" href="https://petewasher.github.io/raspberry-pi-dht22-sensor/">
     <meta name="referrer" content="no-referrer-when-downgrade">
     
     <meta property="og:site_name" content="Smart Stuff">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Raspberry Pi DHT22 &amp; DHT11 Sensor">
     <meta property="og:description" content="It&#x27;s amazing how expensive it can appear to be to buy a digital temperature sensor. You can put one together yourself for very little using things you might already have.">
-    <meta property="og:url" content="https://www.petewasher.net/raspberry-pi-dht22-sensor/">
+    <meta property="og:url" content="https://petewasher.github.io/raspberry-pi-dht22-sensor/">
     <meta property="og:image" content="https://images.unsplash.com/photo-1585146702843-45507b83e662?ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;2000&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ">
     <meta property="article:published_time" content="2020-05-14T21:02:03.000Z">
     <meta property="article:modified_time" content="2020-05-14T21:14:45.000Z">
@@ -28,7 +28,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Raspberry Pi DHT22 &amp; DHT11 Sensor">
     <meta name="twitter:description" content="It&#x27;s amazing how expensive it can appear to be to buy a digital temperature sensor. You can put one together yourself for very little using things you might already have.">
-    <meta name="twitter:url" content="https://www.petewasher.net/raspberry-pi-dht22-sensor/">
+    <meta name="twitter:url" content="https://petewasher.github.io/raspberry-pi-dht22-sensor/">
     <meta name="twitter:image" content="https://images.unsplash.com/photo-1585146702843-45507b83e662?ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;2000&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="Pete Washer">
@@ -44,10 +44,10 @@
     "publisher": {
         "@type": "Organization",
         "name": "Smart Stuff",
-        "url": "https://www.petewasher.net/",
+        "url": "https://petewasher.github.io/",
         "logo": {
             "@type": "ImageObject",
-            "url": "https://www.petewasher.net/content/images/2020/05/smart-stuff.png"
+            "url": "https://petewasher.github.io/content/images/2020/05/smart-stuff.png"
         }
     },
     "author": {
@@ -55,15 +55,15 @@
         "name": "Pete Washer",
         "image": {
             "@type": "ImageObject",
-            "url": "https://www.petewasher.net/content/images/2020/04/Washer_Peter.jpg",
+            "url": "https://petewasher.github.io/content/images/2020/04/Washer_Peter.jpg",
             "width": 876,
             "height": 876
         },
-        "url": "https://www.petewasher.net/author/pete/",
+        "url": "https://petewasher.github.io/author/pete/",
         "sameAs": []
     },
     "headline": "Raspberry Pi DHT22 &amp; DHT11 Sensor",
-    "url": "https://www.petewasher.net/raspberry-pi-dht22-sensor/",
+    "url": "https://petewasher.github.io/raspberry-pi-dht22-sensor/",
     "datePublished": "2020-05-14T21:02:03.000Z",
     "dateModified": "2020-05-14T21:14:45.000Z",
     "image": {
@@ -74,12 +74,12 @@
     },
     "keywords": "guides, raspberry-pi, iot, sensors, infuxdb, smarthome",
     "description": "It&#x27;s amazing how expensive it can appear to be to buy a digital temperature sensor. You can put one together yourself for very little using things you might already have.",
-    "mainEntityOfPage": "https://www.petewasher.net/raspberry-pi-dht22-sensor/"
+    "mainEntityOfPage": "https://petewasher.github.io/raspberry-pi-dht22-sensor/"
 }
     </script>
 
     <meta name="generator" content="Ghost 5.101">
-    <link rel="alternate" type="application/rss+xml" title="Smart Stuff" href="https://www.petewasher.net/rss/">
+    <link rel="alternate" type="application/rss+xml" title="Smart Stuff" href="https://petewasher.github.io/rss/">
 
     <style amp-custom>
     *,
@@ -1066,7 +1066,7 @@
 
 <body class="amp-template">
     <header class="page-header">
-        <a href="https://www.petewasher.net">
+        <a href="https://petewasher.github.io">
                 Smart Stuff
         </a>
     </header>
@@ -1088,7 +1088,7 @@
             </figure>
             <section class="post-content">
 
-                <h2 id="setup">Setup</h2><p>Assemble some bits:</p><ul><li>Pi Zero W or really any flavour of Pi you have around.</li><li>SD Card</li><li>DHT22 Sensor and some cables. I bought <a href="https://www.amazon.co.uk/MakerHawk-Digital-Temperature-Humidity-Measure/dp/B072391SJV?ref=petewasher.net">this one</a>.</li><li>Or a DHT11 sensor like <a href="https://www.amazon.co.uk/Longruner-Temperature-Humidity-Arduino-Raspberry/dp/B073PW6WGD?ref=petewasher.net">this one</a>. DHT11 has slightly less resolution and accuracy, but is cheaper. Wiring is the same.</li></ul><p>I suggest you get one which comes prepackaged on a small PCB with the headers. Generally these come with the appropriate resistor already soldered on, and some wires to hook up and get you started quicker. </p><p>Grab the latest Raspbian from the RPi Foundation, or use a noobs image to<br />get your Pi Zero installed. Remember to add a empty file called <code>ssh</code> to<br />your <code>/boot</code> partition to enable SSH Server, and fill in a <code>wpa_supplicant.conf</code><br />if you need to setup your wifi:</p><pre><code>country=GB
+                <h2 id="setup">Setup</h2><p>Assemble some bits:</p><ul><li>Pi Zero W or really any flavour of Pi you have around.</li><li>SD Card</li><li>DHT22 Sensor and some cables. I bought <a href="https://www.amazon.co.uk/MakerHawk-Digital-Temperature-Humidity-Measure/dp/B072391SJV?ref=petewasher.github.io">this one</a>.</li><li>Or a DHT11 sensor like <a href="https://www.amazon.co.uk/Longruner-Temperature-Humidity-Arduino-Raspberry/dp/B073PW6WGD?ref=petewasher.github.io">this one</a>. DHT11 has slightly less resolution and accuracy, but is cheaper. Wiring is the same.</li></ul><p>I suggest you get one which comes prepackaged on a small PCB with the headers. Generally these come with the appropriate resistor already soldered on, and some wires to hook up and get you started quicker. </p><p>Grab the latest Raspbian from the RPi Foundation, or use a noobs image to<br />get your Pi Zero installed. Remember to add a empty file called <code>ssh</code> to<br />your <code>/boot</code> partition to enable SSH Server, and fill in a <code>wpa_supplicant.conf</code><br />if you need to setup your wifi:</p><pre><code>country=GB
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 
@@ -1097,7 +1097,7 @@ ssid="WIFI_SSID"
 scan_ssid=1
 psk="WIFI_PASSWORD"
 key_mgmt=WPA-PSK
-}</code></pre><p>More details <a href="https://linuxhint.com/rasperberry_pi_wifi_wpa_supplicant/?ref=petewasher.net">here</a>.</p><p>Now your pi should arrive on the network and you will be able to SSH into it<br />using <code>ssh pi@raspberrypi</code>. Do the updates etc., and we can get the DHT sensor<br />setup!</p><h2 id="cheap-dht22-wifi-sensor">Cheap DHT22 Wifi Sensor</h2><p>If you have the same sensor listed above, wire up your Pi as follows:</p><pre><code>DHT22 Pin 1 -&gt; 3.3V
+}</code></pre><p>More details <a href="https://linuxhint.com/rasperberry_pi_wifi_wpa_supplicant/?ref=petewasher.github.io">here</a>.</p><p>Now your pi should arrive on the network and you will be able to SSH into it<br />using <code>ssh pi@raspberrypi</code>. Do the updates etc., and we can get the DHT sensor<br />setup!</p><h2 id="cheap-dht22-wifi-sensor">Cheap DHT22 Wifi Sensor</h2><p>If you have the same sensor listed above, wire up your Pi as follows:</p><pre><code>DHT22 Pin 1 -&gt; 3.3V
 DHT22 Pin 2 -&gt; GPIO4
 DHT22 Pin 3 -&gt; GND
 </code></pre>
@@ -1145,7 +1145,7 @@ client.write_points(json_body)
     <footer class="page-footer">
         <h3>Smart Stuff</h3>
             <p>Lots of stuff I&#x27;ve done which seems pretty smart</p>
-        <p><a href="https://www.petewasher.net">Read more posts →</a></p>
+        <p><a href="https://petewasher.github.io">Read more posts →</a></p>
         <a class="powered" href="https://ghost.org" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 156"><g fill="none" fill-rule="evenodd"><rect fill="#15212B" width="156" height="156" rx="27"/><g transform="translate(36 36)" fill="#F6F8FA"><path d="M0 71.007A4.004 4.004 0 014 67h26a4 4 0 014 4.007v8.986A4.004 4.004 0 0130 84H4a4 4 0 01-4-4.007v-8.986zM50 71.007A4.004 4.004 0 0154 67h26a4 4 0 014 4.007v8.986A4.004 4.004 0 0180 84H54a4 4 0 01-4-4.007v-8.986z"/><rect y="34" width="84" height="17" rx="4"/><path d="M0 4.007A4.007 4.007 0 014.007 0h41.986A4.003 4.003 0 0150 4.007v8.986A4.007 4.007 0 0145.993 17H4.007A4.003 4.003 0 010 12.993V4.007z"/><rect x="67" width="17" height="17" rx="4"/></g></g></svg> Published with Ghost</a>
     </footer>
     
